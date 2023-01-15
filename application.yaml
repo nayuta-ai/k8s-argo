@@ -6,13 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/nayuta-ai/k8s-argocd.git
+    repoURL: https://github.com/nayuta-ai/k8s-argo.git
     targetRevision: HEAD
     path: dev
   destination:
     server: https://kubernetes.default.svc
     namespace: myapp
- 
+
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
