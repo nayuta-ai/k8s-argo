@@ -1,0 +1,15 @@
+on:
+ - push
+ - pull_request
+
+name: Validate
+jobs:
+  conftest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: test
+      uses: instrumenta/conftest-action@master
+      with:
+        files: ./dev/*.yaml
+        policy: ./policy
