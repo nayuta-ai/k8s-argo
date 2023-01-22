@@ -1,19 +1,127 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp
+typemeta:
+    kind: ""
+    apiversion: ""
+objectmeta:
+    name: ""
+    generatename: ""
+    namespace: ""
+    selflink: ""
+    uid: ""
+    resourceversion: ""
+    generation: 0
+    creationtimestamp: "0001-01-01T00:00:00Z"
+    deletiontimestamp: null
+    deletiongraceperiodseconds: null
+    labels: {}
+    annotations: {}
+    ownerreferences: []
+    finalizers: []
+    managedfields: []
 spec:
-  selector:
-    matchLabels:
-      app: myapp
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      containers:
-        - name: myapp
-          image: nanajanashia/argocd-app:1.1
-          ports:
-            - containerPort: 8080
+    replicas: 2
+    selector:
+        matchlabels: {}
+        matchexpressions: []
+    template:
+        objectmeta:
+            name: ""
+            generatename: ""
+            namespace: ""
+            selflink: ""
+            uid: ""
+            resourceversion: ""
+            generation: 0
+            creationtimestamp: "0001-01-01T00:00:00Z"
+            deletiontimestamp: null
+            deletiongraceperiodseconds: null
+            labels: {}
+            annotations: {}
+            ownerreferences: []
+            finalizers: []
+            managedfields: []
+        spec:
+            volumes: []
+            initcontainers: []
+            containers:
+                - name: myapp
+                  image: yuta42173/ubuntu
+                  command: []
+                  args: []
+                  workingdir: ""
+                  ports:
+                    - name: ""
+                      hostport: 0
+                      containerport: 0
+                      protocol: ""
+                      hostip: ""
+                  envfrom: []
+                  env: []
+                  resources:
+                    limits: {}
+                    requests: {}
+                    claims: []
+                  volumemounts: []
+                  volumedevices: []
+                  livenessprobe: null
+                  readinessprobe: null
+                  startupprobe: null
+                  lifecycle: null
+                  terminationmessagepath: ""
+                  terminationmessagepolicy: ""
+                  imagepullpolicy: ""
+                  securitycontext: null
+                  stdin: false
+                  stdinonce: false
+                  tty: false
+            ephemeralcontainers: []
+            restartpolicy: ""
+            terminationgraceperiodseconds: null
+            activedeadlineseconds: null
+            dnspolicy: ""
+            nodeselector: {}
+            serviceaccountname: ""
+            deprecatedserviceaccount: ""
+            automountserviceaccounttoken: null
+            nodename: ""
+            hostnetwork: false
+            hostpid: false
+            hostipc: false
+            shareprocessnamespace: null
+            securitycontext: null
+            imagepullsecrets: []
+            hostname: ""
+            subdomain: ""
+            affinity: null
+            schedulername: ""
+            tolerations: []
+            hostaliases: []
+            priorityclassname: ""
+            priority: null
+            dnsconfig: null
+            readinessgates: []
+            runtimeclassname: null
+            enableservicelinks: null
+            preemptionpolicy: null
+            overhead: {}
+            topologyspreadconstraints: []
+            sethostnameasfqdn: null
+            os: null
+            hostusers: null
+            schedulinggates: []
+            resourceclaims: []
+    strategy:
+        type: ""
+        rollingupdate: null
+    minreadyseconds: 0
+    revisionhistorylimit: null
+    paused: false
+    progressdeadlineseconds: null
+status:
+    observedgeneration: 0
+    replicas: 0
+    updatedreplicas: 0
+    readyreplicas: 0
+    availablereplicas: 0
+    unavailablereplicas: 0
+    conditions: []
+    collisioncount: null
