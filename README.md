@@ -1,4 +1,8 @@
 # k8s-argo
+## How to install
+- [minikube](https://minikube.sigs.k8s.io/docs/start/)
+- [terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+
 ## How to use
 1. Start minikube
 ```
@@ -6,9 +10,11 @@ $ minikube start
 ```
 2. Install ArgoCD and Open a port for ArgoCD UI
 ```
-$ kubectl create ns argocd
-$ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-$ kubectl port-forward -n argocd svc/argocd-server 8080:443
+$ terraform init
+$ terraform plan
+$ terraform apply -lock=false -lock-timeout="10m"
+$ kubectl patch svc my-argocd-argo-cd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+$ kubectl port-forward svc/my-argocd-argo-cd-server -n argocd 8080:443
 ```
 Access `http://localhost:8080`
 
@@ -16,9 +22,15 @@ Access `http://localhost:8080`
 
 The Username is "admin", but the Password is obtained by the following command.
 ```
-$ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+% kubectl -n argocd get secret argocd-secret -o template="{{.data.clearPassword | base64decode}}"; echo
 ```
 4. Integrate ArgoCD with Github
 ```
-$ kubectl apply -f application.yaml
+$ kubectl apply -f argocd/application.yaml
 ```
+
+## Reference
+[A guide to Terraform for Kubernetes beginners](https://opensource.com/article/20/7/terraform-kubernetes)
+[Getting Started with Kubernetes provider](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/getting-started#kubernetes)
+[Command: apply](https://developer.hashicorp.com/terraform/cli/commands/apply)
+[Bitnami Helm ChartでArgo CDをインストール及び ... - IK.AM](https://ik.am/entries/659)
