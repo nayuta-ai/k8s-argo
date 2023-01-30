@@ -16,6 +16,7 @@ $ minikube start
 ```
 2. Install ArgoCD and Open a port for ArgoCD UI
 ```
+$ cd terraform
 $ terraform init
 $ terraform plan
 $ terraform apply -lock=false -lock-timeout="10m"
@@ -32,6 +33,7 @@ The Username is "admin", but the Password is obtained by the following command.
 ```
 4. Integrate ArgoCD with Github
 ```
+$ cd ..
 $ kubectl apply -f argocd/application.yaml
 ```
 
