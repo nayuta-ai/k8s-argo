@@ -4,6 +4,12 @@
 - [terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
 ## How to use
+0. Clone repository
+```
+$ git clone https://github.com/nayuta-ai/k8s-argo.git
+$ cd k8s-argo
+$ git checkout -b terraform origin/terraform
+```
 1. Start minikube
 ```
 $ minikube start
@@ -30,7 +36,7 @@ $ kubectl apply -f argocd/application.yaml
 ```
 
 ## Reference
-[A guide to Terraform for Kubernetes beginners](https://opensource.com/article/20/7/terraform-kubernetes)
-[Getting Started with Kubernetes provider](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/getting-started#kubernetes)
-[Command: apply](https://developer.hashicorp.com/terraform/cli/commands/apply)
-[Bitnami Helm ChartでArgo CDをインストール及び ... - IK.AM](https://ik.am/entries/659)
+- [A guide to Terraform for Kubernetes beginners](https://opensource.com/article/20/7/terraform-kubernetes)
+- [Getting Started with Kubernetes provider](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/guides/getting-started#kubernetes)
+- [Command: apply](https://developer.hashicorp.com/terraform/cli/commands/apply)
+- [Bitnami Helm ChartでArgo CDをインストール及び ... - IK.AM](https://ik.am/entries/659)
