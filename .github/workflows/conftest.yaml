@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: Install conftest
+      uses: wget -O - 'https://github.com/open-policy-agent/conftest/releases/download/v${{ env.CONFTEST_VERSION }}/conftest_${{ env.CONFTEST_VERSION }}_Linux_x86_64.tar.gz' | tar zxvf -
+    - name: verify
+      uses: ./conftest verify ./
     - name: test
-      uses: instrumenta/conftest-action@master
-      with:
-        files: ./dev/*.yaml
-        policy: ./policy
+      uses: ./conftest test ./dev/deployment.yaml
