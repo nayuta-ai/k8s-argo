@@ -6,10 +6,18 @@ name: Validate
 jobs:
   conftest:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
     - uses: actions/checkout@master
+    - name: install conftest
+      run: |
+        LATEST_VERSION=$(wget -O - "https://api.github.com/repos/open-policy-agent/conftest/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c 2-)
+        wget "https://github.com/open-policy-agent/conftest/releases/download/v${LATEST_VERSION}/conftest_${LATEST_VERSION}_Linux_x86_64.tar.gz"
+        tar xzf conftest_${LATEST_VERSION}_Linux_x86_64.tar.gz
+
+    - name: unit-test
+      run: ./conftest verify ./
     - name: test
-      uses: instrumenta/conftest-action@master
-      with:
-        files: ./dev/*.yaml
-        policy: ./policy
+      run: ./conftest test ./dev/deployment.yaml
