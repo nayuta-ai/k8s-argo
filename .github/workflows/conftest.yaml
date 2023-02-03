@@ -1,15 +1,23 @@
 on:
  - push
  - pull_request
+env:
+  LATEST_VERSION: 0.38.0
 
 name: Validate
 jobs:
   conftest:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
-    - uses: actions/checkout@master
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: install conftest
+      run: wget -O - 'https://github.com/open-policy-agent/conftest/releases/download/v${{ env.LATEST_VERSION }}/conftest_${{ env.LATEST_VERSION }}_Linux_x86_64.tar.gz' | tar zxvf -
+
+    - name: unit-test
+      run: ./conftest verify ./
     - name: test
-      uses: instrumenta/conftest-action@master
-      with:
-        files: ./dev/*.yaml
-        policy: ./policy
+      run: ./conftest test ./dev/deployment.yaml
